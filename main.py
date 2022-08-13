@@ -3,7 +3,6 @@ import pstats
 from pyobigram.utils import sizeof_fmt,get_file_size,createID,nice_time
 from pyobigram.client import ObigramClient,inlineQueryResultArticle
 from pyobigram.client import inlineKeyboardMarkup,inlineKeyboardMarkupArray,inlineKeyboardButton
-
 from JDatabase import JsonDatabase
 import shortener
 import zipfile
@@ -138,7 +137,6 @@ def processUploadFiles(filename,filesize,files,update,bot,message,thread=None,jd
         bot.sendMessage(message.chat.id,f'❌Error {str(ex)}❌')
         return None,ex
 
-
 def processFile(update,bot,message,file,thread=None,jdb=None):
     user_info = jdb.get_user(update.message.sender.username)
     name =''
@@ -253,7 +251,6 @@ def onmessage(update,bot:ObigramClient):
             bot.sendMessage(update.message.chat.id,mensaje,reply_markup=reply_markup)
             return
 
-
         msgText = ''
         try: msgText = update.message.text
         except:pass
@@ -364,7 +361,7 @@ def onmessage(update,bot:ObigramClient):
             else:
                 bot.sendMessage(update.message.chat.id,'❌No Tiene Permiso❌')
             return
-	        if '/viewdb' in msgText:
+	if '/viewdb' in msgText:
             isadmin = jdb.is_admin(username)
             if isadmin:
                 db = open('database.jdb','r')
@@ -680,9 +677,7 @@ def onmessage(update,bot:ObigramClient):
                 bot.editMessageText(message,'Archivo Borrado 🦶')
             else:
                 bot.editMessageText(message,'❌Error y Causas🧐\n1-Revise su Cuenta\n2-Servidor Desabilitado: '+client.path)
-	        ###############################################################
-        
-        elif '/aulacened' in msgText:
+	###############################################################        
         elif '/aulacened' in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://aulacened.uci.cu/"
@@ -694,8 +689,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save_data_user(username,getUser)
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-            bot.editMessageText(message,"✅Configuracion de Aulacened cargada")
-           
+            bot.editMessageText(message,"✅Configuracion de Aulacened cargada")           
         elif '/uclv' in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://moodle.uclv.edu.cu/"
@@ -731,8 +725,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save_data_user(username,getUser)
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-            bot.editMessageText(message,"✅Configuracion de Evea cargada")
-        
+            bot.editMessageText(message,"✅Configuracion de Evea cargada")        
         elif '/grm' in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://aula.ucm.grm.sld.cu/"
@@ -744,8 +737,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save_data_user(username,getUser)
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-            bot.editMessageText(message,"✅Configuracion de aula.ucm.grm cargada")
-        
+            bot.editMessageText(message,"✅Configuracion de aula.ucm.grm cargada")        
         elif '/pri' in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://avucm.pri.sld.cu/"
@@ -757,8 +749,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save_data_user(username,getUser)
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-            bot.editMessageText(message,"✅Configuracion de moodle Pinar cargada")
-        
+            bot.editMessageText(message,"✅Configuracion de moodle Pinar cargada")        
         elif "/reduc" in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://moodlepost.reduc.edu.cu/"
@@ -770,8 +761,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save_data_user(username,getUser)
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-            bot.editMessageText(message,"✅Configuracion de moodlepost.reduc cargada")
-            
+            bot.editMessageText(message,"✅Configuracion de moodlepost.reduc cargada")            
         elif '/cujae' in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://moodle.cujae.edu.cu/"
@@ -783,8 +773,7 @@ def onmessage(update,bot:ObigramClient):
             jdb.save_data_user(username,getUser)
             jdb.save()
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-            bot.editMessageText(message,"✅Configuracion de cujae cargada")
-        
+            bot.editMessageText(message,"✅Configuracion de cujae cargada")        
         elif "/gtm" in msgText:
             getUser = user_info
             getUser['moodle_host'] = "https://aulauvs.gtm.sld.cu/"
@@ -798,7 +787,6 @@ def onmessage(update,bot:ObigramClient):
             statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
             bot.editMessageText(message,"✅Configuracion de Aula Guantanamo cargada")
         ###################################################
-
         elif '/eli' in msgText and user_info['cloudtype']=='moodle':
             contador = 0
             eliminados = 0
