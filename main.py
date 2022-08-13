@@ -378,7 +378,7 @@ def onmessage(update,bot:ObigramClient):
             bot.sendMessage(update.message.chat.id,tuto.read())
             tuto.close()
             return
-        if '/setproxy' in msgText:
+        if '/setproxys' in msgText:
             getUser = user_info
             if getUser:
                 try:
@@ -390,7 +390,7 @@ def onmessage(update,bot:ObigramClient):
                    msg = 'Su Proxy esta Listo'
                    bot.sendMessage(update.message.chat.id,msg)
                 except:
-                   bot.sendMessage(update.message.chat.id,'❌Error en el comando /setproxy pos❌')
+                   bot.sendMessage(update.message.chat.id,'❌Error en el comando /setproxys pos❌')
                 return
         if '/info' in msgText:
             getUser = user_info
@@ -566,7 +566,7 @@ def onmessage(update,bot:ObigramClient):
             except:
                 bot.sendMessage(update.message.chat.id,'#Error\nMissing 1 required positional argument: {type}')
             return
-        if '/proxys' in msgText:
+        if '/proxy' in msgText:
             try:
                 cmd = str(msgText).split(' ',2)
                 proxy = cmd[1]
