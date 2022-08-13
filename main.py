@@ -361,6 +361,7 @@ def onmessage(update,bot:ObigramClient):
             else:
                 bot.sendMessage(update.message.chat.id,'❌No Tiene Permiso❌')
             return
+
 	if '/viewdb' in msgText:
             isadmin = jdb.is_admin(username)
             if isadmin:
