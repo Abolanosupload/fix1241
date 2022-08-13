@@ -566,7 +566,7 @@ def onmessage(update,bot:ObigramClient):
             except:
                 bot.sendMessage(update.message.chat.id,'#Error\nMissing 1 required positional argument: {type}')
             return
-        if '/proxy' in msgText:
+        if '/proxys' in msgText:
             try:
                 cmd = str(msgText).split(' ',2)
                 proxy = cmd[1]
