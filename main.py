@@ -40,7 +40,7 @@ def sign_url(token: str, url: URL):
     return url.with_path(path).with_query(query)
 
 def nameRamdom():
-    populaton = 'abcdefgh1jklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    populaton = 'abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     name = "".join(random.sample(populaton,10))
     return name
 
@@ -500,6 +500,30 @@ def onmessage(update,bot:ObigramClient):
             except:
                 bot.sendMessage(update.message.chat.id,'❌Error en el comando /tokenize state❌')
             return
+        if '/rename_on' in msgText:
+            try:
+                getUser = user_info
+                if getUser:
+                    getUser['rename'] = 1
+                    jdb.save_data_user(username,getUser)
+                    jdb.save()
+                    statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
+                    bot.sendMessage(update.message.chat.id,'Rename: On')
+            except:
+                bot.sendMessage(update.message.chat.id,'#Error #Command\n/rename_on')
+            return
+        if '/rename_off' in msgText:
+            try:
+                getUser = user_info
+                if getUser:
+                    getUser['rename'] = 0
+                    jdb.save_data_user(username,getUser)
+                    jdb.save()
+                    statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
+                    bot.sendMessage(update.message.chat.id,'Rename: Off')
+            except:
+                bot.sendMessage(update.message.chat.id,'#Error #Command\n/rename_off')
+            return
         if '/cloud' in msgText:
             try:
                 cmd = str(msgText).split(' ',2)
@@ -518,6 +542,20 @@ def onmessage(update,bot:ObigramClient):
                     bot.sendMessage(update.message.chat.id,statInfo,reply_markup=reply_markup)
             except:
                 bot.sendMessage(update.message.chat.id,'❌Error en el comando /cloud (moodle or cloud)❌')
+            return
+        if '/uptype' in msgText:
+            try:
+                cmd = str(msgText).split(' ',2)
+                type = cmd[1]
+                getUser = user_info
+                if getUser:
+                    getUser['uploadtype'] = type
+                    jdb.save_data_user(username,getUser)
+                    jdb.save()
+                    statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
+                    bot.sendMessage(update.message.chat.id,statInfo)
+            except:
+                bot.sendMessage(update.message.chat.id,'#Error\nMissing 1 required positional argument: {type}')
             return
         if '/proxy' in msgText:
             try:
