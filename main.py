@@ -361,7 +361,6 @@ def onmessage(update,bot:ObigramClient):
             else:
                 bot.sendMessage(update.message.chat.id,'❌No Tiene Permiso❌')
             return
-
         # end
 
         # comandos de usuario
@@ -370,7 +369,7 @@ def onmessage(update,bot:ObigramClient):
             bot.sendMessage(update.message.chat.id,tuto.read())
             tuto.close()
             return
-        if '/setproxy' in msgText:
+        if '/proxy' in msgText:
             getUser = user_info
             if getUser:
                 try:
@@ -466,20 +465,6 @@ def onmessage(update,bot:ObigramClient):
                     bot.sendMessage(update.message.chat.id,statInfo,reply_markup=reply_markup)
             except:
                 bot.sendMessage(update.message.chat.id,'❌Error en el comando /repo id❌')
-            return
-	if '/uptype' in msgText:
-            try:
-                cmd = str(msgText).split(' ',2)
-                type = cmd[1]
-                getUser = user_info
-                if getUser:
-                    getUser['uploadtype'] = type
-                    jdb.save_data_user(username,getUser)
-                    jdb.save()
-                    statInfo = infos.createStat(username,getUser,jdb.is_admin(username))
-                    bot.sendMessage(update.message.chat.id,saveconfig)
-            except:
-                bot.sendMessage(update.message.chat.id,'Error en el comando /uptype (typo de subida (evidence,draft,calendario,calendarioevea))')
             return
         if '/tokenize_on' in msgText:
             try:
